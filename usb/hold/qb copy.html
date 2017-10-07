@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset="utf-8" />
+<title>Quickbooks Made Easy - Online</title>
+<head>
+  <title>Quickbooks Online</title>
+  <script src="js/playlists.js"></script>
+  <script type="text/javascript" src="js/angular.min.js"></script>
+  <script src="js/angular-filter.js"></script>
+  <script src="js/underscore.js"></script>
+  <script src="js/jquery-1.11.2.min.js"></script>
+  <script src="js/listctl.js"></script>
+  <script type="text/javascript" src="JW610/jwplayer.js"></script>
+  <script type="text/javascript">jwplayer.key="l/j6NRE1flAbV9vZD1DyzglXo3o1zbeOZxaLUg=="</script>
+  <script type="text/javascript" src="js/flash_detect_min.js"></script>
+  <link rel="stylesheet" href="CSS/styles.css" type="text/css"/>
+
+<script>
+document.addEventListener('keydown', function(event) {
+//alert(event.keyCode);
+switch(event.keyCode)
+  {
+  case 32:
+  jwplayer().play();
+  break;
+  case 13:
+  jwplayer().play();
+  break;
+  case 10:
+  jwplayer().play();
+  break;
+}
+});
+
+window.addEventListener("resize", setDivHeight);
+
+function setDivHeight() {
+    var pH = $("#playerbox").height();
+    //$("#col1").height(pH);
+}
+
+
+// Flash or iOS detection, native html5 not supported for Chrome, Firefox
+function CheckFlash(){
+var ab = 0;
+if(FlashDetect.versionAtLeast(15, 0)){
+ ab = 1;
+ loadFlash(ab);
+ } else {
+ pl = navigator.platform;
+ ua = navigator.userAgent;
+ //alert(ua);
+ //console.log(ua.indexOf("Chrome") < 0);
+ if ((ua.indexOf("Chrome") < 0) && (ua.indexOf("Firefox") < 0))
+ // if (((pl.indexOf("iPad") >-1) || (pl.indexOf("iPhone") >-1) || (pl.indexOf("iPod") >-1)) && ((ua.match(/Chrome/g) == null) || (ua.indexOf("Firefox") < 1)))
+ {
+ ab = 2;
+ loadHLS(ab);
+ } else {
+ document.getElementById("feedback").style.color = 'black';
+ document.getElementById("feedback").innerHTML ="Flash must be enabled to view this video, unless viewing on an iOS device." ;
+ }
+ }};
+
+function loadVideo(num) {
+//alert(num);
+jwplayer().playlistItem(num);
+};
+
+
+</script>
+
+<!--onLoad="CheckFlash()"-->
+</head>
+
+<body onLoad="loadHLS(1);">
+<div class="headerblock">
+<h2><img src="">Quickbooks Made Easy - Online </h2>
+<div>There is a whole lot of information that might go here.</div>
+</div>
+<div class="display">
+
+<p>&nbsp;</p>
+<div id="menublock">
+<div  ng-app="myApp" ng-controller="myCtrl" >
+
+<div id="col1" class="sidebarright" >
+<ul ng-model="test">
+<li>Chapters</li>
+ <li class="navl"  ng-repeat="chapter in uniqueTags()">
+ {{chapter}}
+ </li>
+</ul>
+<!--
+<select  ng-model="test" ng-options="chapter for chapter in uniqueTags()">
+<option value = ' '/>Select Chapter</option>
+    </select><br />
+ -->
+</div>
+
+<div id="menuright">
+<ul>
+  <li class="nav" ng-repeat="x in plist  | filter: {chapter: test} track by $index">
+  <a href="" ng-click="sendVal($index)" ><div><img ng-src="{{x.image}}" alt="" height="68" width="120"/>
+   {{$index}} {{ x.title }}</div></a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div></div>
+<div id="playerbox">
+<div id="videoplayer" style="display: none;">Loading the player...</div>
+<script>
+//setDivHeight();
+</script>
+<!--<div><p id='feedback' >&nbsp;</p></div>-->
+
+
+<!-- Logging and info display -->
+<script type="text/javascript">
+function loadHLS(num){
+if(num == 1){
+//console.log(pl[1].description);
+    jwplayer('videoplayer').setup({
+    controls: true
+    ,width: "100%"
+    ,aspectratio: "16:9"
+    //,listbar: {
+     //   position: "right",
+    //    size: 240
+    //  }
+    ,playlist: pl
+    });
+};
+}
+</script>
+
+
+
+<!--
+<script type="text/javascript">
+jwplayer('videoplayer').onLoad(function(){
+alert(jwplayer('videoplayer').getPlaylist[0]);
+})
+</script>
+<script type="text/javascript">
+jwplayer('videoplayer').onPlaylist(function()
+{
+alert('playlist loaded');
+//mydiv = document.getElementById('selectlist');
+//plist = jwplayer().getPlaylist();
+alert(plist);
+//pcnt = plist.length;
+//for(i=0; i < pcnt; i++){
+//opt = document.createElement('li');
+//$(opt).append($('<a href="#" onClick="loadVideo('+i+')")>'+plist[i].title+'</a>'));
+//mydiv.appendChild(opt);
+//};
+//myitem = jwplayer().getPlaylistItem().title;
+//mydiv.innerHTML=myitem;
+});
+</script>
+ -->
+ </div>
+</div>
+
+</body>
+</html>
