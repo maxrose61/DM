@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Heckerling University of Miami</title>
+<title>Heckerling Institute on Estate Planning</title>
   <script src="js/amplify.store.min.js"></script>
   <script src="js/pdfobject.js"></script> 
   <script src="js/um2017.js"></script>
@@ -46,20 +46,19 @@ Welcome text 2 <br><br>
 <div class="centerButton"><button class="css_btn_class" id="accept2">Accept & Continue</button></div>
 </div>
 <!-- END DISCLAIMER -->
-<!-- FIXED NAVIGATION COLUMN -->
 <div id="leftcolfixed">
 <div class="leftimgblk">
-<p><h2>University of Miami</h2></P>
-<!-- 
-<img id="leftimg1" src="graphics/TITLE_Left_Bar.png">
-<img id="leftimg2" src="graphics/LeftBossen.png">
- -->
+<!-- <p><h2>University of Miami</h2></P> -->
+<!-- <img id="leftimg1" src="graphics/TITLE_Left_Bar.png"> -->
+<!-- <img id="leftimg2" src="graphics/LeftBossen.png"> -->
+
 <br><br>
 <p></p>
 <br><br>
 <button class="css_btn_class" id="fullscreen">Full Screen</button>
 <button class="css_btn_class" id="toggleHelp">Help</button></div>
 </div>
+
 <!-- END LEFT COLlUMN -->
 <!-- CONTAINER FOR MENUS AND VIDEO -->
 <div class="display">
@@ -68,7 +67,7 @@ Welcome text 2 <br><br>
 <div class="helpScreen">
 <p>This product is compatible with most web-browsers. An internet connection is not required for video playback.</p>
 <p>The video player allows convenient playback controls listed below. The user may also navigate to the previous or next video using the arrow buttons in the video control bar.</p>
-<div style="text-align:center"><img src="graphics/Controlller.png" alt=""/></div>
+<!-- <div style="text-align:center"><img src="graphics/Controlller.png" alt=""/></div> -->
 <h2>Shortcuts</h2>
 <p>Due to a security feature, not all alphanumeric keys are available when in fullscreen mode. These shortcuts will only work when outside of fullscreen. Keyboard shortcuts are also not supported in Internet Explorer 8.</p>
 <table>
@@ -111,10 +110,12 @@ Welcome text 2 <br><br>
 <!-- END HELPSCREEN -->
 
 <div class="menublock">
-	<div ng-app="myApp" ng-controller="myCtrl">
+
+<div ng-app="myApp" ng-controller="myCtrl">
+	
 	<div id="col1" class="sidebarright">
 	    <ul ng-model="test">
-	<a href= ""><li id="cmenu"  ng-click="filterChap(ProgramTitle)" ng-repeat="ProgramAttributes in uniqueTags() ">
+	<a href= ""><li id="cmenu"  ng-click="filterChap(ProgramAttributes)" ng-repeat="ProgramAttributes in uniqueTags() ">
 	<h3>{{ProgramAttributes}}</h3>
 	</li></a>
 	</ul>
@@ -130,13 +131,17 @@ Welcome text 2 <br><br>
 	        <div id="currChap">&nbsp;</div>
 	    <ul>
 	    <li id="vmenu" class="nav" ng-repeat="x in plist  | filter:filters ">
-	    <p><strong>{{x.Date | date:'EEEE MMMM dd, yyyy'}}</strong></p>
-	    <h3>{{ x.ProgramTitle }}</h3><p>{{ x.ProgramDescription }}</p>
-	    
-	    <p>{{x.Speaker1}}</p><p>{{x.Speaker2}}</p><p>{{x.Speaker3}}</p>
-	        <a href="" ng-click="sendVal(x.ProgramMaterials)" ><div>
-<!-- 	        <img ng-src="{{x.ProgramTitle}}" alt="{{x.ProgramTitle}}" height="56" width="100"/> -->
-	        {{ x.ProgramMaterials }}</div></a></li>
+			<p><strong>{{x.Date | date:'EEEE MMMM dd, yyyy'}}</strong></p>
+			<h3>{{ x.ProgramTitle }}</h3>
+			<p>{{ x.ProgramDescription }}</p>
+			<a href="" ng-click="sendVal(x.ProgramMaterials)" ><img src="images/pdf.png" height="16" width="16"/>
+			{{ x.ProgramMaterials }}</a>
+
+	<!-- 	    <p>{{x.ProgramAttributes}}</p> -->
+			<p><a href="" ng-click="showAuthor(x.Speaker1)">{{x.Speaker1}}</a></p>
+			<p><a href="" ng-click="showAuthor(x.Speaker2)">{{x.Speaker2}}</a></p>
+			<p><a href="" ng-click="showAuthor(x.Speaker3)">{{x.Speaker3}}</a></p>
+		</li>
 	    </ul>
 	</div>
 
