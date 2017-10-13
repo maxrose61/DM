@@ -2,14 +2,19 @@
 $(document).ready(function() {
     // CHECK FOR PREVIOUS ACCEPTANCE OF DISCLAIMERS
     // check for first run
-    userReturn();
+//     userReturn();
 
     $("#clsmenu").click(closeVideo);
 
+// Opening Screen, click to proceed
     $("#accept1").click(function() {
-        $("#disclaimer1").toggle(700);
-        $("#disclaimer2").toggle(170);
-        localStorage.setItem("disclaim", "1");
+        $("#disclaimer1").hide(300);
+		$("#leftcolfixed").toggle(300);
+        $(".display").toggle(300);
+        $(".headerblock").toggle(300);
+
+//         $("#disclaimer2").toggle(170);
+//         localStorage.setItem("disclaim", "1");
     });
 
     $("#accept2").click(function() {
@@ -20,9 +25,16 @@ $(document).ready(function() {
     });
 
     $("#col1").click(function() {
+    console.log('col1 click');
         $(".sidebarright").toggle(500);
         $(".menuright").toggle(500);
+        
     });
+    
+//     $('#cmenu').click(function() {
+//     alert('cmenu');
+// 		$(".playerbox").hide(500);
+// 	});
 
     $("#clsvmenu").click(function() {
         $(".sidebarright").toggle(500);
@@ -97,8 +109,10 @@ function loadVideo(num) {
 	$("#nowplaying").text(num);
 	px=('pdf/' + num);
 	var success = new PDFObject({ url:px }).embed("pdf");
+// 	console.log(success.data);
     $('#videoplayer').focus();
 };
+
 
 function setText() {
 //     curr = jwplayer().getPlaylistItem().chapter + ': ' + jwplayer().getPlaylistItem().title;

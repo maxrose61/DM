@@ -1,0 +1,273 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ScreenPlay Movie Demo</title>
+<script src="js/playlists.js"></script>
+<script type="text/javascript" src="JW610/jwplayer.js"></script>
+<script type="text/javascript">jwplayer.key="R56jf0akttNhtVREEOcY9VhgzQlINFREeFwPeBDS6M8="</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+document.addEventListener('keydown', function(event) {
+//alert(event.keyCode);
+switch(event.keyCode)
+  {
+  case 32:
+  jwplayer().play();
+  break;
+  case 13:
+  jwplayer().play();
+  break;
+  case 10:
+  jwplayer().play();
+  break;
+}
+});
+
+function loadVideo(num) {
+//alert(num);
+jwplayer().playlistItem(num);
+};
+
+function dsize() {
+dest=$("#myElement").width();
+//alert(dest);
+$("#selectlist").width(dest - 40);
+$("#messages").width(dest);
+$("#playersizer").width(dest);
+$("#nav ul li").width(dest);
+$("#nav").width(dest);
+};
+
+function callClick(txt) {
+alert(txt);
+};
+
+</script>
+<style>
+html{
+width:100%;
+height:100%;
+}
+body {
+width:100%;
+height:100%;
+background-color:#303;
+}
+#myElement {
+/*background-color:#EEE;
+width:640px;*/
+border:1px solid #FFF;
+border-radius:0px;
+display:block;
+float:center;
+clear:both;
+margin:3px;
+}
+.ilbutton {
+float:auto;
+width:22%;
+/*border:2px solid #FFF;*/
+border-radius:6px;
+background-color:#777;
+display:inline;
+padding:.5%;
+margin:16px;
+font-size:small;
+font-style:italic;
+}
+#playersizer {
+/*background-color:#EEE;*/
+width:inherit;
+display:block;
+color: #FFF;
+}
+#messages {
+/*background-color:#EEE;*/
+width:640px;
+display:block;
+color: #FFF;
+font-size:small;
+font-style:italic;
+position:relative;
+text-align:center;
+z-index:10;
+clear:both;
+}
+.dropdown select{
+width:0px;
+font-size:large;
+border:3;
+-webkit-appearance:none;
+-moz-appearance:none;
+/*background-color:#666;*/
+/*text-indent:6px;*/
+text-overflow:none;
+color:#FFF;
+display:block;
+}
+#nav{
+    list-style:none;
+    font-weight:bold;
+    margin:0px;
+    /* Clear floats */
+    float:auto;
+    width:600px;
+    height: 30px;
+    /* Bring the nav above everything else--uncomment if needed. */
+    position:relative;
+    z-index:50;
+    left:-15px;
+}
+#nav li{
+    float:left;
+    margin-right:0px;
+    position:relative;
+    width:100%;
+    text-align:left;
+    margin-left:0px;
+}
+#nav a{
+    display:block;
+    color:#fff;
+    /*background:#333;*/
+    text-decoration:none;
+    margin-left:0px;
+    padding:5px;
+}
+#nav a:hover{
+    color:#fff;
+    background:#AAA;
+    text-decoration:underline;
+}
+
+/*--- DROPDOWN ---*/
+#nav ul{
+    background:#fff;
+    background:rgba(255,255,255,0);
+    list-style:none;
+    position:absolute;
+    left:-9999px;
+    font-size:small;
+}
+#nav ul li{
+    padding-top:0px;
+    float:auto;
+    text-align:left;
+    width:600px;
+    /*border:thin solid #FFF;*/
+    position:relative;
+    left:-45px;
+}
+#nav ul a{
+    white-space:nowrap;
+}
+#nav li:hover ul{
+    left:0;
+}
+#nav li:hover a{
+    background:#444;
+    text-decoration:underline;
+}
+#nav li:hover ul a{
+    text-decoration:none;
+}
+#nav li:hover ul li a:hover{
+    background:#bbb;
+}
+</style>
+
+</head>
+
+<body>
+<font face='Arial' font color="#FFFFFF">
+<center>
+<!--<p><h2 align='center' valign='top'>ScreenPlay Movie Demo</></h2></p>-->
+<!-- Put the body of your page below this line -->
+<!--<div id='player'>-->
+<!--<div id='ddlist' class='dropdown' onChange="loadVideo(selectlist.selectedIndex);"><select id='selectlist'></select></div>-->
+<div><ul id="nav"><li><a href="#">Menu<a/><ul id="selectlist">
+            </ul></li>
+            </ul></div>
+
+<div id="myElement">&nbsp;</div>
+<div id='messages'>&nbsp;</div>
+<br>
+
+<script type="text/javascript">
+    jwplayer("myElement").setup({
+    width: '640'
+    //,aspectratio: '16:9'
+    ,height: '360'
+    //,listbar:{position:'right',size:300}
+    //,primary: 'flash'
+    ,playlist:pl
+    ,abouttext: 'Quickbooks Made Easy'
+//    ,listbar: {
+//     position: 'right'
+//     ,size: 240
+//     }
+
+//  ,events: {
+//             onMeta: function(event) {
+//               console.log("onMeta()");
+//             },
+//             onReady: function(event) {
+//               console.log("onReady()");
+//               jwplayer().play(false);
+//             },
+//             onMute: function(event) {
+//               console.log("onMute()");
+//             },
+//             onPause: function(event) {
+//               console.log("onPause()");
+//             },
+//             onPlay: function(event) {
+//               console.log("onPlay()");
+//             },
+//             onVolume: function(event) {
+//               //console.log(jwplayer().getVolume());
+//             }}
+});
+</script>
+
+<script type='text/javascript'>
+jwplayer().onMeta(function()
+{
+//alert('Hello');
+mydiv = document.getElementById('messages');
+//q = jwplayer().getPlaylist()[0];
+msg = 'Now Playing:'
+msg = msg + ' ' + jwplayer().getPlaylistItem().title;
+//msg = msg + ' ' + jwplayer().getPlaylistItem().sources[q].label;
+console.log(msg);
+//alert(msg);
+mydiv.innerHTML=msg;
+});
+
+
+jwplayer().onPlaylist(function()
+{
+//alert('playlist loaded');
+mydiv = document.getElementById('selectlist');
+plist = pl;
+pcnt = plist.length;
+for(i=0; i < pcnt; i++){
+opt = document.createElement('li');
+$(opt).append($('<a href="#" onClick="loadVideo('+i+')")>'+plist[i].title+'</a>'));
+mydiv.appendChild(opt);
+};
+//myitem = jwplayer().getPlaylistItem().title;
+//mydiv.innerHTML=myitem;
+});
+
+
+</script>
+<div id="playersizer" >
+<div class='ilbutton' onclick='jwplayer().resize(640,360); dsize();' style='cursor:pointer'>Small</div>
+<div class='ilbutton' onclick='jwplayer().resize(854,480); dsize();' style='cursor:pointer'>Medium</div>
+<div class='ilbutton' onclick='jwplayer().resize(1280,720); dsize();' style='cursor:pointer'>Large</div>
+</div>
+
+</center>
+</body>
+</html>
