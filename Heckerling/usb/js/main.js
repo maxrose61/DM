@@ -18,9 +18,9 @@ $(document).ready(function() {
     });
 
     $("#accept2").click(function() {
-        $("#disclaimer2").toggle(1200);
-        $("#leftcolfixed").toggle(1000);
-        $(".display").toggle(1000);
+        $("#disclaimer2").toggle(300);
+        $("#leftcolfixed").toggle(400);
+        $(".display").toggle(6000);
         localStorage.setItem("disclaim", "2");
     });
 
@@ -107,8 +107,11 @@ function loadVideo(num) {
     $(".playerbox").toggle(600);
 //     jwplayer().playlistItem(num);
 	$("#nowplaying").text(num);
+	var options = {
+    pdfOpenParams: { view: 'FitW' }
+	};
 	px=('pdf/' + num);
-	var success = new PDFObject({ url:px }).embed("pdf");
+	PDFObject.embed(px, "#pdf-container", options);
 // 	console.log(success.data);
     $('#videoplayer').focus();
 };
