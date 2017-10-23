@@ -1,0 +1,24 @@
+	<ul ng-if="Date" ng-repeat="(Date, items) in plist | groupBy: 'Date' ">
+<!-- 		    <p >{{items[0].ProgramTitle}}</p> -->
+<!-- ng-if='items[0].ProgramTitle' -->
+		  <h3  id="currChap" >{{Date | date:'fullDate'}}</h3>
+ 	    <li id="vmenu" class="nav" ng-repeat="x in items  | filter:filters " >
+<!-- 			<p><strong>{{x.Date | date:'fullDate'}}</strong></p> -->
+			<p>{{ toTime(x.TimeStart) | date: 'shortTime'}}<span ng-if="x.TimeEnd">- {{toTime(x.TimeEnd) | date: 'shortTime'}}</span>&nbsp;&nbsp;<strong style="font-size:medium"><a href="#" ng-click="showDetails = ! showDetails">{{ x.ProgramTitle }}</a></strong></p>
+			<div ng-show="showDetails">
+			<h3>Program Description</h3>
+			<p><span ng-if="x.SessionID">{{ x.SessionID }} &nbsp;</span>{{ x.ProgramDescription }}</p>
+			<a href="" ng-click="sendVal(x.ProgramMaterials)" >
+			<img ng-if="x.ProgramMaterials" src="images/pdf.png" height="16" width="16"/>
+			{{ x.ProgramMaterials }}</a>
+			<p></p><h3>Speakers</h3>
+			<p><a href="" ng-click="showAuthor(x.Speaker1)">{{x.Speaker1}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker2)">{{x.Speaker2}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker3)">{{x.Speaker3}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker4)">{{x.Speaker4}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker5)">{{x.Speaker5}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker6)">{{x.Speaker6}}</a></p>
+			 </div>
+		</li>
+		<p>&nbsp;</p>
+</ul>
