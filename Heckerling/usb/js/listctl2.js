@@ -1,4 +1,4 @@
-var app = angular.module("testApp", ["ngRoute"]);
+var app = angular.module("testApp", ["ngRoute","angular-join"]);
 
 app.config(function($routeProvider) {
     
@@ -41,18 +41,23 @@ app.controller("scheduleCtrl", function ($scope, $routeParams) {
 //    };
    if($routeParams.progAtt == ':general') {
    $scope.filters.ProgramAttributes = "General Sessions";
+   $scope.item = {heading: "General Sessions"};
    }
    else if ($routeParams.progAtt == ':special') {
    $scope.filters.ProgramAttributes = "Special Sessions";
+   $scope.item = {heading: "Special Sessions"};
    }
    else if ($routeParams.progAtt == ':fundamentals') {
    $scope.filters.ProgramAttributes = "Fundamentals";
+   $scope.item = {heading: "Fundamentals"};
    }
    else if ($routeParams.progAtt == ':recent') {
    $scope.filters.ProgramAttributes = "Recent Developments";
+   $scope.item = {heading: "Recent Developments"};
    }
    else {
-   $scope.filters.ProgramAttributes = "";
+   $scope.filters = '';
+   $scope.item = {heading: "Institute Schedule"};
    };
 // Handle Author
    $scope.showAuthor = function (val) {
@@ -75,6 +80,9 @@ app.controller("scheduleCtrl", function ($scope, $routeParams) {
     return date;
     };
     
+    
+    $scope.selected = -1;
+    
 //     $scope.uniqueTags = function() {
 //     return _.chain($scope.plist)
 //     .sortBy("ProgramAttributes")
@@ -89,6 +97,7 @@ app.controller("scheduleCtrl", function ($scope, $routeParams) {
 app.controller("facultyCtrl", function ($scope) {
    $scope.filters = {};
    $scope.sp = sp;
+   $scope.item = {heading: "Faculty"};
 
    
    

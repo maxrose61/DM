@@ -12,7 +12,7 @@ table.containertbl
     color:white;
     padding:10px;
     font-size:20px;
-    border: 2px solid;
+/*     border: 2px solid; */
 }
 .containertbl h1
 {   
@@ -179,7 +179,7 @@ nav select {
 .leftlink{
   color: #83062c;
   text-decoration: none;
-  
+  padding: 20px;
   font-size:12pt;
 }
 

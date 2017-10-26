@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heckerling Institute on Estate Planning</title>
+  <script src="js/amplify.store.min.js"></script>
+  <script src="js/pdfobject.js"></script> 
+  <script src="js/um2017.js"></script>
+  <script src="js/speakers.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-filter.js"></script>
+  <script src="js/angular-route.js"></script>
+  <script src="js/underscore.js"></script>
+  <script src="js/jquery-1.11.2.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/listctl.js"></script>
+  <script src="js/FullScreenAPI.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+<!-- 
+  <script type="text/javascript" src="js/jwplayer.js"></script>
+  <script type="text/javascript">jwplayer.key="vPzrvgngEARCrxdWseTzILslTSPeRjXA1EvoGGXwEME="</script>
+  <script type="text/javascript" src="js/flash_detect_min.js"></script>
+ -->
+  <link rel="stylesheet" href="CSS/styles_um.css" type="text/css"/>
+  <link rel="stylesheet" href="CSS/fss.css" type="text/css"/>
+<!--   <link rel="stylesheet" href="CSS/bootstrap.css " type="text/css"/> -->
+
+<script>
+// console.log(pl);
+</script>
+
+</head>
+
+<body ng-app="myApp">
+<!-- START HEADER -->
+<div class="headerblock">
+<img id="imgright" src="images/52_USB_Banner.jpg">
+</div>
+<!-- END HEADER -->
+<!-- 1st DISCLAIMER -->
+<div id="disclaimer1" class="disclaimer tooltip">
+<!-- <div class="tooltip"> -->
+<img id="accept1" alt="click to proceed" src='images/Heckerling_splashPD2-1024x768.png'></img>
+
+  <span class="tooltiptext">Click to continue</span>
+<!-- </div> -->
+<!-- <div class="centerButton"><button class="css_btn_class" id="accept1">Accept & Continue</button></div> -->
+</div>
+<!-- 2nd DISCLAIMER -->
+<!-- 
+<div id="disclaimer2" class="disclaimer" style="display:none">
+Welcome text 2 <br><br>
+<div class="centerButton"><button class="css_btn_class" id="accept2">Accept & Continue</button></div>
+</div>
+ -->
+<!-- END DISCLAIMER -->
+<!-- <div  ng-controller="sessionCtrl"> -->
+<div>
+<!-- START LEFT COLlUMN -->
+<div id="leftcolfixed">
+<div class="leftimgblk">
+<!-- <p><h2>University of Miami</h2></P> -->
+<!-- <img id="leftimg1" src="graphics/TITLE_Left_Bar.png"> -->
+<!-- <img id="leftimg2" src="graphics/LeftBossen.png"> -->
+	<ul ng-model="">
+	<a href= ""><li id="cmenu"  ng-click="filterChap(ProgramAttributes)" ng-repeat="ProgramAttributes in uniqueTags()" ng-if="ProgramAttributes !=null">
+	<h4>{{ProgramAttributes}}</h4>
+	</li></a>
+	</ul>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<button class="css_btn_class" id="fullscreen">Full Screen</button>
+<button class="css_btn_class" id="toggleHelp">Help</button></div>
+</div>
+<!-- END LEFT COLlUMN -->
+
+<!-- CONTAINER FOR MENUS AND VIDEO -->
+<div class="display">
+
+<!-- HELP SCREEN  -->
+<div class="helpScreen">
+<p>This product is compatible with most web-browsers. An internet connection is not required for operation.</p>
+<p>Additional instructions wil go here.</p>
+<!-- <div style="text-align:center"><img src="graphics/Controlller.png" alt=""/></div> -->
+<!-- <h2>Shortcuts</h2> -->
+<!-- <p>Due to a security feature, not all alphanumeric keys are available when in fullscreen mode. These shortcuts will only work when outside of fullscreen. Keyboard shortcuts are also not supported in Internet Explorer 8.</p> -->
+<!-- 
+<table>
+	<tbody>
+		<tr>
+			<th>Keyboard Shortcut</th>
+			<th>Action</th>
+		</tr>
+		<tr>
+			<td>Space</td>
+			<td>Pause/Play video playback</td>
+		</tr>
+		<tr>
+			<td>Enter</td>
+			<td>Pause/Play video playback</td>
+		</tr>
+	</tbody>
+</table>
+ -->
+</div>
+<!-- END HELPSCREEN -->
+
+<div class="menublock" >
+
+<!-- 
+<div ng-app="myApp" ng-controller="myCtrl">
+ -->
+	
+<div id="col1" class="sidebarright"></div>
+
+	<div class="menuright">
+	<ng-view></ng-view>
+<!-- 
+	<ul ng-if="Date" ng-repeat="(Date, items) in plist | groupBy: 'Date' ">
+<!~~ 		    <p >{{items[0].ProgramTitle}}</p> ~~>
+<!~~ ng-if='items[0].ProgramTitle' ~~>
+		  <h3  id="currChap" >{{Date | date:'fullDate'}}</h3>
+ 	    <li id="vmenu" class="nav" ng-repeat="x in items  | filter:filters " >
+<!~~ 			<p><strong>{{x.Date | date:'fullDate'}}</strong></p> ~~>
+			<p>{{ toTime(x.TimeStart) | date: 'shortTime'}}<span ng-if="x.TimeEnd">- {{toTime(x.TimeEnd) | date: 'shortTime'}}</span>&nbsp;&nbsp;<strong style="font-size:medium"><a href="#" ng-click="showDetails = ! showDetails">{{ x.ProgramTitle }}</a></strong></p>
+			<div ng-show="showDetails">
+			<h3>Program Description</h3>
+			<p><span ng-if="x.SessionID">{{ x.SessionID }} &nbsp;</span>{{ x.ProgramDescription }}</p>
+			<a href="" ng-click="sendVal(x.ProgramMaterials)" >
+			<img ng-if="x.ProgramMaterials" src="images/pdf.png" height="16" width="16"/>
+			{{ x.ProgramMaterials }}</a>
+			<p></p><h3>Speakers</h3>
+			<p><a href="" ng-click="showAuthor(x.Speaker1)">{{x.Speaker1}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker2)">{{x.Speaker2}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker3)">{{x.Speaker3}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker4)">{{x.Speaker4}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker5)">{{x.Speaker5}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker6)">{{x.Speaker6}}</a></p>
+			 </div>
+		</li>
+		<p>&nbsp;</p>
+</ul>
+ -->
+	
+
+	</div>
+
+	</div>
+
+</div>
+<!-- END MENUBLOCK -->
+<!-- <div id="rightcolfixed">&nbsp;<div> -->
+<div class="playerbox">
+<div id="pdf-container">It appears you don't have Adobe Reader or PDF support in this web browser. <a href=success.data>Click here to download the PDF.</a></div>
+
+<div class="player">
+
+<div id="currentplay" >
+<div class="middletext" id="nowplaying">&nbsp;</div>
+<div class="menubutton" id="clsmenu"><button class="css_btn_class" id="accept1">Back</button></div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

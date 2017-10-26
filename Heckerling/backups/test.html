@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heckerling Institute on Estate Planning</title>
+  <script src="js/amplify.store.min.js"></script>
+  <script src="js/pdfobject.js"></script> 
+  <script src="js/um2017.js"></script>
+  <script src="js/speakers.js"></script>
+  <script src="js/angular.js"></script>
+  <script src="js/angular-filter.js"></script>
+  <script src="js/angular-route.js"></script>
+  <script src="js/underscore.js"></script>
+  <script src="js/jquery-1.11.2.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/listctl2.js"></script>
+  <script src="js/FullScreenAPI.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script> -->
+  <link rel="stylesheet" href="CSS/default.css" type="text/css"/>
+  <link rel="stylesheet" href="CSS/styles_um.css" type="text/css"/>
+  <link rel="stylesheet" href="CSS/fss.css" type="text/css"/>
+
+<!--   <link rel="stylesheet" href="CSS/jumbotron.css" type="text/css"/> -->
+  <link rel="stylesheet" href="CSS/bootstrap.css " type="text/css"/>
+
+</head>
+
+<body ng-app="testApp">
+
+
+<div>
+<!-- <p><a href="#/!">Home</a></p> -->
+
+
+<nav> 
+	<div style="margin-left: 2em">
+	<a class="leftlink" href="#/!">Home</a><br> 
+	<a class="leftlink" href="#!schedule">Institute Schedule</a><br>
+	<a class="leftlink" href="#!schedule/:general">General Sessions</a><br>
+	<a class="leftlink" href="#!schedule/:special">Special Sessions</a><br>
+	<a class="leftlink" href="#!schedule/:fundamentals">Fundamentals</a><br>
+	<a class="leftlink" href="#!schedule/:recent">Recent Developments</a><br>
+	<a class="leftlink" href="#!faculty">Faculty</a><br>
+	<a class="leftlink" href="#!help">Help</a><br>
+	<a class="leftlink" href="#!copyright">Copyright</a><br>
+	</div>
+  <select onchange="location.href=''+this.value"> 
+    <option value="#/!">Select Category</option> 
+    <option value="#!schedule"> Institute Schedule</option>
+    <option value="#!schedule/:general"> General Sessions"</option>
+    <option value="#!schedule/:special"> Special Sessions </option>
+    <option value="#!schedule/:fundamentals"> Fundamentals </option>
+    <option value="#!schedule/:recent"> Recent Developments</option>
+    <option value="#!faculty"> Faculty</option>
+    <option value="#!help"> Help</option>
+    <option value="#!copyright"> Copyright</option> 
+  </select> 
+<br><br>
+</nav>
+
+<div ng-view></div>
+
+</div>
+
+<!-- TEMPLATE SCRIPTS HERE -->
+<script type="text/ng-template" id="main.html">
+  <div class="col-md-9">
+    <div><p style="text-align: center;"><h2>52nd Annual Heckerling Institute on Estate Planning</h3></p>
+    <p style="text-align: center;">January 22 – 26, 2018</p></div> 
+</script>
+
+<script type="text/ng-template" id=".html">
+
+</script>
+
+<script type="text/ng-template" id="schedule.html">
+<h3  id="" >Institute Schedule</h3>
+<table width="100%" border="0" class="custom"><tbody>
+<tr><td colspan="2" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr>
+<tr><td><ul ng-repeat="(Date, items) in plist | filter:filters | groupBy: 'Date'  ">
+<!-- 		    <p >{{items.ProgramAttributes}}</p> -->
+<!-- ng-if='items.ProgramTitle' -->
+		  <h3  id="currChap" >{{Date | date:'fullDate' : 'UTC'}}</h3>
+ 	    <li id="vmenu" class="nav" ng-repeat="x in items   " >
+			<p>{{ toTime(x.TimeStart) | date: 'shortTime'}}<span ng-if="x.TimeEnd">- {{toTime(x.TimeEnd) | date: 'shortTime'}}</span>&nbsp;&nbsp;<strong style="font-size:medium"><a href="" ng-click="showDetails = ! showDetails">{{ x.ProgramTitle }}</a></strong></p>
+			<div ng-show="showDetails">
+			<h3 ng-if="x.ProgramDescription">Program Description</h3>
+			<p><span ng-if="x.SessionID">{{ x.SessionID }} &nbsp;</span>{{ x.ProgramDescription }}</p>
+			<a href="pdf/{{x.ProgramMaterials}}" target="blank">
+			<img ng-if="x.ProgramMaterials" src="images/pdf.png" height="16" width="16"/>
+			{{ x.ProgramMaterials }}</a>
+			<p></p><h3 ng-if="x.Speaker1">Speakers</h3>
+			<p><a href="" ng-click="showAuthor(x.Speaker1)">{{x.Speaker1}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker2)">{{x.Speaker2}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker3)">{{x.Speaker3}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker4)">{{x.Speaker4}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker5)">{{x.Speaker5}}</a>
+			 <a href="" ng-click="showAuthor(x.Speaker6)">{{x.Speaker6}}</a></p>
+			 </div>
+		</li>
+		<p>&nbsp;</p>
+</ul>
+</td></tr>	
+</tbody></table>
+</script>
+
+<script type="text/ng-template" id="faculty.html">
+<table width="100%" border="0" class="custom"><tbody>
+<tr><td colspan="2" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr><tr><td>
+	<ul>
+		  <h3  id="currChap" >Faculty</h3>
+ 	    <li id="vmenu" class="nav" ng-repeat="s in sp  | orderBy:SpeakerLastName:reverse=false " >
+			<p><a href="" ng-click="showDetails = ! showDetails">{{ s.speaker }}</a></strong></p>
+			<div ng-show="showDetails">
+			<h3 ng-if="s.SpeakerBio">Biography</h3>
+			<p>{{s.SpeakerBio}}</p>
+<!-- 
+			<a href="pdf/{{x.ProgramMaterials}}" target="blank">
+			<img ng-if="x.ProgramMaterials" src="images/pdf.png" height="16" width="16"/>
+			{{ x.ProgramMaterials }}</a>
+			<p></p><h3 ng-if="x.Speaker1">Speakers</h3>
+ -->
+		 <p>&nbsp;</p>
+			 </div>
+		</li>
+		<p>&nbsp;</p>
+</ul>
+</td></tr>	
+</tbody></table>
+</script>
+
+<script type="text/ng-template" id="copyright.html">
+<table width="100%" border="0" class="custom"><tbody><tr><td colspan="2" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr>
+<tr><td colspan="2"><p><h3>Copyright Information</h3></p>
+<p>&nbsp;</p>
+<p><span><strong><span >&copy;&nbsp;</span></strong><span>2018 UNIVERSITY OF MIAMI SCHOOL OF LAW. ALL RIGHTS RESERVED.&nbsp;</span></span><span >UNDER NO CIRCUMSTANCES IS THIS MATERIAL TO BE REPRODUCED WITHOUT&nbsp;</span><span >THE WRITTEN PERMISSION OF THE UNIVERSITY OF MIAMI SCHOOL OF LAW.</span></p>
+<p><span ></span><span >&nbsp;</span></p>
+<p><span >The content herein is to be used for informational purposes only. Neither the Heckerling Institute nor the University of&nbsp;</span><span >Miami represent or warrant the accuracy or completeness of the information contained in these materials, and do not&nbsp;</span><span >endorse the content. Moreover, the views expressed in these materials do not necessarily reflect the views of the&nbsp;</span><span >Heckerling Institute or the University of Miami. In no event will the Heckerling Institute or the University of Miami be&nbsp;</span><span >liable for any damages that might result from any use of or reliance on these materials.</span></p>
+<p><span >&nbsp;</span>&nbsp;</p>
+<p><strong><span >This product was produced by <a href="http://www.discmakers.com" target="blank">Disc Makers</a> for the Heckerling Institute. This product may not be duplicated without written permission from the Heckerling Institute.&nbsp;Disc Makers and/or its suppliers shall be held harmless and will not be held liable for any consequential or incidental damages to any user hardware or other software resulting from the installation and/or use of this product.</span></strong></p>
+<p><strong><span >All rights reserved.</span></strong></p></td></tr>	
+</tbody></table>
+</script>
+
+<script type="text/ng-template" id="help.html">
+<table width="100%" border="0" class="custom">
+<tbody>
+<tr><td colspan="2" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr>
+<tr><td colspan="2">
+<p ><h3>Viewing PDFs</h3></p>
+<p>&nbsp;</p>
+<p >This application contains PDF documents which can be viewed on most computers within the web broswer, or externally using any PDF compatible program. The most common, Adobe Acrobat Reader, is free and can be downloaded here: <a href="https://get.adobe.com/reader/">get.adobe.com/reader</a></p>
+<p>&nbsp;</p>
+<p >Why do my PDFs download rather than view in my browser?<br>In order to view the presentation PDFs in your web browser, both the browser and Acrobat Reader or other plug-in software will need to be properly configured.</p>
+<p >Viewing with my browser still doesn’t work.</span><br>Some computers may have operating restrictions placed on them by the system administrator which may conflict with this process. Check with your IT department for suggestions on ways around this issue.</p>
+<p >For additional support and troubleshooting resources, see Adobe’s website at www.adobe.com.<br><br></p>
+<p >&nbsp;</p>
+<p ><h3>Technical Support</h3></p>
+<p>&nbsp;</p>
+<p >Contact Disc Makers<br><a href="mailto:authoring@discmakers.com">authoring@discmakers.com</p>
+<p>&nbsp;</p>
+</td></tr>	
+</tbody></table>
+</script>
+<!-- END TEMPLATES -->
+
+
+</body>

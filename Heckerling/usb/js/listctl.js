@@ -1,5 +1,5 @@
 var app = angular.module("myApp", ["angular.filter", "ngRoute"]);
-var app2 = angular.module("testApp", ["angular.filter", "ngRoute"]);
+
 // app.config(function($routeProvider) {
 //     $routeProvider
 //     .when("/session", {
