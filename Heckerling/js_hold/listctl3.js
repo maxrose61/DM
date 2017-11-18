@@ -22,52 +22,23 @@ app.config(function($routeProvider) {
         controller : "scheduleCtrl"
     })
 
-        .when("/program/:progTitle", {
-        templateUrl : "program.html",
-        controller : "programCtrl"
-    })
-
-        .when("/faculty/:speaker", {
-        templateUrl : "facultydetail.html",
-        controller : "facultyCtrl"
-    })
-
         .when("/faculty", {
         templateUrl : "faculty.html",
         controller : "facultyCtrl"
     });
 });
-
-app.controller("programCtrl", function ($scope, $routeParams) {
-   $scope.fltr = {};
-   $scope.plist = pl;
-//    console.log( $routeParams.progAtt);
-//    if($routeParams.progAtt == ':') {
-   $scope.fltr.ProgramTitle = $routeParams.progTitle;
-   $scope.item = {heading: "Program Information"};
-//    console.log($scope.fltr);
-//    }
-
-    $scope.toTime = function(time) { 
-    var parts = time.split(":");
-    var date = new Date(0, 0, 0, parts[0], parts[1], parts[2]);
-    return date;
-    };
-    
-    $scope.selected = -1;
-
+app.controller("londonCtrl", function ($scope) {
+    $scope.msg = "I love London";
 });
-
 app.controller("scheduleCtrl", function ($scope, $routeParams) {
    $scope.filters = {};
    $scope.plist = pl;
-//    console.log($routeParams);
-// 	Load PDF - TBD
+//    console.log($routeParams.progAtt);
+// Load PDF
 //    $scope.sendVal = function (val) {
 //    console.log(val);
 //    loadVideo(val);
 //    };
-
    if($routeParams.progAtt == ':general') {
    $scope.filters.ProgramAttributes = "General Sessions";
    $scope.item = {heading: "General Sessions"};
@@ -88,18 +59,19 @@ app.controller("scheduleCtrl", function ($scope, $routeParams) {
    $scope.filters = '';
    $scope.item = {heading: "Institute Schedule"};
    };
-// Handle Author - TBD
+// Handle Author
    $scope.showAuthor = function (val) {
+//    console.log(val);
    alert("Show bio for: " + val);
    };   
       
 // FILTER CHAPTER LIST AND SET CHAPTER DISPLAY
-//    $scope.filterChap = function (ref) {
+   $scope.filterChap = function (ref) {
 //    console.log(ref);
-//    $scope.filters.ProgramAttributes = ref;
+   $scope.filters.ProgramAttributes = ref;
    //console.log(uniqueTags.indexOf(ref));
 //    $("#currChap").text(ref);
-//    };
+   };
    
 //  Create datetime from time string
     $scope.toTime = function(time) { 
@@ -122,41 +94,27 @@ app.controller("scheduleCtrl", function ($scope, $routeParams) {
     
 });
 
-app.controller("facultyCtrl", function ($scope, $routeParams) {
-   $scope.flt = {};
+app.controller("facultyCtrl", function ($scope) {
+   $scope.filters = {};
+//    $scope.sp = sp;
    $scope.item = {heading: "Faculty"};
    
-//    console.log($routeParams.speaker);
-	// loop through Programs, associate speakers with programs
-	var rows = _.map(sp, function(speak){ 
-	var question = _.filter(pl, function(q){ 
-    return q.speakers.includes(speak.speaker)
-    });
-//     console.log(question.length);
-	var tmp = []
-    for (i = 0; i < question.length; i++) {
-//     sid.push("sessionId":question[i].SessionID);
-    tmp.push({"SessionID":question[i].SessionID, "ProgramTitle":question[i].ProgramTitle, "Date":question[i].Date, "TimeStart":question[i].TimeStart, "TimeEnd":question[i].TimeEnd,});
-    }
-    speak.ProgramTitle = tmp;
-    return speak; 
-    // question[i]? question[i].SessionID:'';
-    })
-    
-    $scope.sp = rows;
+//    console.log($scope);
 
-   if( $routeParams.speaker !=null ) {
-   $scope.flt.speaker = $routeParams.speaker;
-   }
-   else {
-   $scope.flt = '';
-   }
-   
-   $scope.toTime = function(time) {
-   var parts = time.split(":");
-   var date = new Date(0, 0, 0, parts[0], parts[1], parts[2]);
-   return date;
-   };
+var rows = _.map(sp, function(speak){ 
+	var question = _.find(pl, function(q){ 
+    return q.speakers.includes(speak.speaker) });
+    _.each(question, function(quest){
+    console.log(quest)
+    });
+	speak.SessionID = question? question.SessionID:'';
+    speak.ProgramTitle = question? question.ProgramTitle:'';
+
+    return speak; 
+})
+$scope.sp = rows;
+// console.log(rows.length);
+// _.each(rows, function(row){ console.log(row) });
 
    
 });
@@ -164,7 +122,23 @@ app.controller("facultyCtrl", function ($scope, $routeParams) {
    app.filter("groupBy", function() {
     return _.memoize(function(items, field) {
             return _.groupBy(items, field);
-            alert('groupby');
         }
     );
 });
+
+
+
+// app.controller('joiner', ['$scope', 'Join', function($scope, Join) {
+//   // Use the Join module to build queries 
+//   var query = Join
+//     .selectFrom(sp);
+// //     .where(...)
+// //     .hashJoin(...)
+// //     .hashGroupBy(...)
+// //     .having(...)
+// //     .orderBy(...)
+// //     .limit(...);
+//  
+//   var results = query.execute();
+//   console.log(results);
+// }]);

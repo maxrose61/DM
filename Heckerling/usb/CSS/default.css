@@ -1,10 +1,8 @@
 table.containertbl
-
-{
+ {
   border-collapse:collapse;
   background-color:#FFFFFF;
   width: 100%; height: auto;
-  
 }
 
 #catheading {
@@ -28,7 +26,7 @@ table.containertbl
 
 @media (min-width: 768px) {
   table.containertbl {
-    width: 750px;
+    width: 100%;
   }
   .headerbanner img{
   width:750px;
@@ -37,7 +35,7 @@ table.containertbl
 
 @media (min-width: 992px) {
   table.containertbl{
-    width: 970px;
+    width: 100%;
   }
   .headerbanner img{
   width:970px;
@@ -46,7 +44,8 @@ table.containertbl
 
 @media (min-width: 1200px) {
   table.containertbl {
-    width: 997px;/*1170*/
+  width: 100%;
+/*     width: 997px;/*1170*/ */
   }
   .headerbanner img{
   width:1000px;
@@ -62,118 +61,68 @@ table.custom
 
 }
 table.custom th{
-
-  padding:5px;
-
-  background-color: #000000;
-  color:white;
-
+	padding:5px;
+	background-color: #000000;
+	color:white;
 }
 
 table.custom td {
-
-padding:5px;
-
+	padding:5px;
 }
 
-
-
-
-h1
-
-{   
+h1 {   
   color:white;
   background-color:#000000;
   padding:5px;
   font-size:10px;
 }
 
-
-
-h2
-
-{
-
-        font-size:1.6em;
-
-        font-weight:normal;
-
-        margin-bottom:10px;
-
-        padding:3px 0px;
-
+h2 {
+	font-size:1.6em;
+	font-weight:normal;
+	margin-bottom:10px;
+	padding:3px 0px;
 }
 
-#header
-{
+#header {
    background-color:white;
    padding:5px;
    width:100%;
 }
 
-
 /* #################### footer ############################ */
-
-#footer-sub
-
-{
-
-
-
-    padding:0px;
-    
-
+#footer-sub {
+	padding:0px;
 }
 
-#footer
-
-{
-
-        padding:15px 10px 15px 20px;
-
-        text-align:right;
-
-        margin:0 auto;
-
-        display:block;
-
-        max-width:971px;
-
-        overflow:hidden
-
+#footer {
+	padding:15px 10px 15px 20px;
+	text-align:right;
+	margin:0 auto;
+	display:block;
+	max-width:971px;
+	overflow:hidden
 }
 
-
-
-#footer div
-
-{
-
-        float:left;
-
-        font-size:0.8em;
-
-        line-height:1.7em;
-
+#footer div {
+	float:left;
+	font-size:0.8em;
+	line-height:1.7em;
 }
 
-
-
-#footer-outer
-
-{
-
-        padding:0;
-
+#footer-outer {
+	padding:0;
 }
-
 
 nav select {
   display: none;
+  margin-left: 10px;
 }
-@media (max-width: 960px) {
+
+@media (max-width: 900px) {
   nav ul     { display: none !important;} 
   nav select { display: inline-block !important;}
+  nav div { display: none !important;} 
 }
 
 .leftlink{
@@ -187,11 +136,11 @@ nav select {
     color: #244c80;
 }
 #footer h4 {
-   color: white;
-  font-size:10pt;
+	color: white;
+	font-size:10pt;
 }
 #footer a {
    color: white;
-  font-size:10pt;
+   font-size:10pt;
 }
 
