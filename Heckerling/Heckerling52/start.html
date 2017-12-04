@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en" slick-uniqueid="3">
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Mac OS X version 5.2.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1.0">
+  <meta http-equiv="content-type" content=
+  "text/html; charset=utf-8">
+  <title>Heckerling Institute on Estate Planning</title>
+  <link href="images/favicon.ico" rel="shortcut icon" type=
+  "image/vnd.microsoft.icon">
+
+  <script src="js/um2017.js">
+  </script>
+  <script src="js/speakers.js">
+  </script>
+  <script src="js/angular.min.js">
+  </script>
+  <script src="js/angular-filter.min.js">
+  </script>
+  <script src="js/angular-route.min.js">
+  </script>
+  <script src="js/angular-join.js">
+  </script>
+  <script src="js/angular-sanitize.min.js">
+  </script>
+  <script src="js/underscore.js">
+  </script>
+  <script src="js/jquery-1.11.2.min.js">
+  </script>
+  <script src="js/listctl2.js">
+  </script>
+  <script src="js/bootstrap.min.js">
+  </script>
+  <link rel="stylesheet" href="CSS/default.css" type="text/css">
+  <link rel="stylesheet" href="CSS/general.css" type="text/css">
+  <link rel="stylesheet" href="CSS/layout.css" type="text/css">
+  <link rel="stylesheet" href="CSS/styles_um.css" type="text/css"/>  
+  <link rel="shortcut icon" href="images/favicon.ico.html" type=
+  "image/x-icon">
+<!--   <link rel="stylesheet" href="style.css.html" media="screen"> -->
+  <!-- Bootstrap core CSS -->
+  <link href="CSS/bootstrap.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="CSS/jumbotron.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+
+<body style="" ng-app="testApp">
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="container">
+    <div id="header">
+      <div>
+        <div class="headerbanner"><img alt="Banner" src=
+        "images/52_USB_Banner.jpg"></div>
+      </div>
+    </div>
+    
+    
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-12">
+        <div id="system-message-container"></div>
+             <!-- end footer -->
+          </div>
+        </div>
+        
+<!--         <script src="js/jquery-1.11.2.min.js"></script>  -->
+<!--         <script src="js/bootstrap.min.js"></script>  -->
+
+
+<!--         TEMPLATES BEGIN -->
+
+        <script type="text/ng-template" id="main.html">
+        <div class="col-md-9">
+        <div><p style="text-align: center;"><h2>52nd Annual Heckerling Institute on Estate Planning</h3></p>
+        <p style="text-align: center;">January 22 – 26, 2018</p>
+        <p>&nbsp;</p>
+        </div> 
+        </script> 
+        <script type="text/ng-template" id="program.html">
+                <table width="100%" border="0" class="custom"><tbody>
+<!--         <div ng-bind="item.heading"  id="catheading"></div> -->
+        <tr><td colspan="1" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr>
+        <tr  style="display:"><td  width="1600" valign="center" bgcolor="#FFFFFF" style="padding:0px">
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+                        <div class="col-md-12" class="nav" ng-repeat=" x in plist | filter:fltr " >
+						<p style="line-height:150%;"><strong style="color:#832F44"><span ng-if="x.SessionID">{{x.SessionID}}&nbsp;</span>{{ x.ProgramTitle }}</strong></p>
+						<p style="line-height:150%;"><strong style="color:#832F44">Date:</strong> {{x.Date | date:'fullDate' : 'UTC'}}</p>
+						<p style="line-height:150%;"><strong style="color:#832F44">Time:</strong> {{ toTime(x.TimeStart) | date: 'shortTime'}}<span ng-if="x.TimeEnd">- {{toTime(x.TimeEnd) | date: 'shortTime'}}</span></p>
+                        <p ng-if="x.ProgramLocation" style="line-height:150%;"><strong style="color:#832F44">Room:</strong> {{ x.ProgramLocation }}</p>
+                        <p >&nbsp;</p>                        
+                        <div ng-if="x.speakers.length > 0">
+                        <p>&nbsp;</p>
+                        <h4  id="catheading">Speaker(s)</h4>
+                        <p style="line-height:1.5;">
+                        <span ng-repeat="s in x.speakers"><a href="#!faculty/{{ s }}" >{{s}}</a><br></span><br>  
+                        </p>
+                        <p>&nbsp;</p>
+                        </div>
+                        
+                        <h4 id="catheading" ng-if="x.ProgramDescription">Program Description</h4>
+                        <p><span ng-if="x.SessionID">{{ x.SessionID }}&nbsp;</span>{{ x.ProgramDescription }}</p><br>                        
+                        <p>&nbsp;</p>
+                        <h4 id="catheading" ng-if="x.ProgramMaterials">Program Materials</h4>
+                        <a style="padding:15px" href="pdf/{{x.ProgramMaterials}}" target="blank"><p>&nbsp;</p>
+                        <img ng-if="x.ProgramMaterials" src="images/pdf.png" />
+                        {{ x.ProgramMaterials }}</a>
+                        </div>
+                        
+                <p>&nbsp;</p>
+        </td></tr>      
+        </tbody></table>
+<p>&nbsp;</p>
+        </script> 
+        <script type="text/ng-template" id="schedule.html">
+        <table width="100%" border="0" class="custom"><tbody>
+        <div ng-bind="item.heading"  id="catheading"></div>
+        <tr><td colspan="2" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr>
+        <tr  style="display:"><td  width="160" valign="center" bgcolor="#FFFFFF" style="padding:0px">
+        <ul style="margin:0px;" ng-repeat="(Date, items) in plist | filter:filters | groupBy: 'Date'  ">
+                  <h3  id="currChap" >{{Date | date:'fullDate' : 'UTC'}}</h3>
+            <li  style="line-height:1.8;" class="nav" ng-repeat="x in items   " >
+                        <div class="col-md-3" style="font-size:small">{{ toTime(x.TimeStart) | date: 'shortTime'}}<span ng-if="x.TimeEnd">- {{toTime(x.TimeEnd) | date: 'shortTime'}}</span></div>
+                        <div class="col-md-8">
+                        <a href="#!program/{{ x.UID }}" ><span ng-if="x.SessionID">{{x.SessionID}}&nbsp;</span>{{ x.ProgramTitle }}</a>
+                         <p>&nbsp;</p>
+                         <p style="padding:15px 0px;"><span ng-repeat="s in x.speakers">{{s}}{{$last ? '' : ', '}}</span></p>
+                        </div>
+                </li>
+        </ul>
+        </td></tr>      
+        </tbody></table>
+        <p>&nbsp;</p>
+        </script> 
+        <script type="text/ng-template" id="faculty.html">
+        <table width="100%" border="0" class="custom"><tbody>
+        <div ng-bind="item.heading"  id="catheading"></div>
+        <tr><td colspan="2" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr><tr><td>
+        <ul>
+                  <h3  id="currChap" >Faculty</h3>
+            <li style="height:3em;" id="vmenu" class="nav" ng-repeat="s in sp  | orderBy:SpeakerLastName:reverse=false " >
+                        <p style="margin:10px 5px;"><a href="#!faculty/{{ s.speaker }}">{{ s.SpeakerLastName }}, {{ s.SpeakerFirstName }}<span ng-if="s.SpeakerMiddle"> {{ s.SpeakerMiddle }}</span></a></p>
+                        
+                        <!-- 
+<div ng-show="showDetails">
+                         <p>&nbsp;</p>
+                        <div ng-if="s.biotext" id="catheading">Biography</div>
+                        <p>&nbsp;</p>
+                        <div id="bio" ng-bind-html="s.biotext"></div>
+                        <p>&nbsp;</p>
+                        <div ng-if="s.ProgramTitle" id="catheading">Programs</div>
+                        <p>&nbsp;</p>
+                        <p><span ng-if="s.SessionID">{{ s.SessionID }} &nbsp;</span><a href="#!program/{{ s.ProgramTitle }}" >{{ s.ProgramTitle }}</a></p>
+                 <p>&nbsp;</p>
+                         </div>
+ -->
+                </li>
+                <p>&nbsp;</p>
+        </ul>
+        </td></tr>      
+        </tbody></table>
+        </script> 
+        <script type="text/ng-template" id="facultydetail.html">
+        <table width="100%" border="0" class="custom"><tbody>
+<!--         <div ng-bind="item.heading"  id="catheading"></div> -->
+        <tr><td colspan="2" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr><tr><td>
+        <ul>
+            <li id="vmenu" class="nav" ng-repeat="s in sp  | filter:flt " >
+						<p>&nbsp;</p>
+                        <!-- 
+<p ><strong style="color:#832F44">{{ s.SpeakerLastName }}, {{ s.SpeakerFirstName }}<span ng-if="s.SpeakerMiddle"> {{ s.SpeakerMiddle }}</span></strong></p>
+                        <!~~ <div ng-show="showDetails"> ~~>
+                        <p>&nbsp;</p>
+ -->
+                        <div ng-if="s.biotext" id="catheading">Biography</div>
+                        <p>&nbsp;</p>
+                        <div id="bio" ng-bind-html="s.biotext"></div>
+                        <p>&nbsp;</p>
+                        <div ng-if="s.ProgramTitle" id="catheading">Programs</div>
+                        <p>&nbsp;</p>
+                        <div style="line-height:1.8;" ng-repeat="p in s.ProgramTitle"><a href="#!program/{{ p.UID }}" ><span ng-if="p.SessionID">{{p.SessionID}}&nbsp;</span>{{p.ProgramTitle}}</a>
+						<p>{{p.Date | date:'fullDate' : 'UTC'}}&nbsp;{{ toTime(p.TimeStart) | date: 'shortTime'}}<span ng-if="p.TimeEnd">-&nbsp;{{toTime(p.TimeEnd) | date: 'shortTime'}}</span></p>
+                        <hr>
+                        </div>
+                 <p>&nbsp;</p>
+                </li>
+                <p>&nbsp;</p>
+        </ul>
+        </td></tr>      
+        </tbody></table>
+        </script> 
+        <script type="text/ng-template" id="copyright.html">
+        <table width="100%" border="0" class="custom"><tbody><tr><td colspan="2" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr>
+        <tr><td colspan="2"><p><h3>Copyright Information</h3></p>
+        <p>&nbsp;</p>
+        <p><span><strong><span >&copy;&nbsp;</span></strong><span>2018 UNIVERSITY OF MIAMI SCHOOL OF LAW. ALL RIGHTS RESERVED.&nbsp;</span></span><span >UNDER NO CIRCUMSTANCES IS THIS MATERIAL TO BE REPRODUCED WITHOUT&nbsp;</span><span >THE WRITTEN PERMISSION OF THE UNIVERSITY OF MIAMI SCHOOL OF LAW.</span></p>
+        <p><span ></span><span >&nbsp;</span></p>
+        <p><span >The content herein is to be used for informational purposes only. Neither the Heckerling Institute nor the University of&nbsp;</span><span >Miami represent or warrant the accuracy or completeness of the information contained in these materials, and do not&nbsp;</span><span >endorse the content. Moreover, the views expressed in these materials do not necessarily reflect the views of the&nbsp;</span><span >Heckerling Institute or the University of Miami. In no event will the Heckerling Institute or the University of Miami be&nbsp;</span><span >liable for any damages that might result from any use of or reliance on these materials.</span></p>
+        <p><span >&nbsp;</span>&nbsp;</p>
+        <p><strong><span >This product was produced by <a href="http://www.discmakers.com" target="blank">Disc Makers</a> for the Heckerling Institute. This product may not be duplicated without written permission from the Heckerling Institute.&nbsp;Disc Makers and/or its suppliers shall be held harmless and will not be held liable for any consequential or incidental damages to any user hardware or other software resulting from the installation and/or use of this product.</span></strong></p>
+        <p><strong><span >All rights reserved.</span></strong></p></td></tr>    
+        </tbody></table>
+        </script> 
+        <script type="text/ng-template" id="help.html">
+        <table width="100%" border="0" class="custom">
+        <tbody>
+        <tr><td colspan="2" align="left"><input type="button" value="Back" onclick="window.history.back();"></td></tr>
+        <tr><td colspan="2">
+        <p><h3>Viewing PDFs</h3></p>
+        <p>&nbsp;</p>
+        <p> This application is designed to run directly from the USB device on which it has been ditributed. No internet connection is required.<p>
+        <p>&nbsp;</p>
+        <p >This application also contains PDF documents which can be viewed on most computers within the web broswer, or externally using any PDF compatible program. The most common, Adobe Acrobat Reader, is free and can be downloaded here: <a href="https://get.adobe.com/reader/">get.adobe.com/reader</a></p>
+        <p>&nbsp;</p>
+        <p><strong>Common Questions</strong></P>
+        <p >Why do my PDFs download rather than display in my browser?<br>In order to view the presentation PDFs in your web browser, both the browser and Acrobat Reader or other plug-in software will need to be properly configured.</p>
+        <p >&nbsp;</p>
+        <p >Viewing with my browser still doesn’t work.</span><br>Some computers may have operating restrictions placed on them by the system administrator which may conflict with this process. Check with your IT department for suggestions on ways around this issue.</p>
+        <p >For additional support and troubleshooting resources, see Adobe’s website at www.adobe.com.<br><br></p>
+        <p >&nbsp;</p>
+        <p ><h3>Technical Support</h3></p>
+        <p>&nbsp;</p>
+        <p>Contact Disc Makers:<br><a href="mailto:authoring@discmakers.com">authoring@discmakers.com</a></p>
+        <p>&nbsp;</p>
+        </td></tr>      
+        </tbody></table>
+        </script>
+        
+<!--         END TEMPLATES         -->
+
+<!-- BEGIN CONTENT -->
+        <table class="containertbl">
+          <tbody>
+            <tr>
+              <td >
+                <h1>Schedule</h1><br>
+                <!-- Example row of columns -->
+                <div class="row">
+                  <div class="col-md-3">
+                    <nav>
+                    <div style="margin-left: 1em">
+<!--                       <p><a class="leftlink" href="#/!">Home</a></p><br> -->
+                      <p><a class="leftlink" href=
+                      "#!schedule">Institute Schedule</a></p><br>
+                      <p><a class="leftlink" href=
+                      "#!schedule/:general">General
+                      Sessions</a></p><br>
+                      <p><a class="leftlink" href=
+                      "#!schedule/:special">Special
+                      Sessions</a></p><br>
+                      <p><a class="leftlink" href=
+                      "#!schedule/:fundamentals">Fundamentals</a></p><br>
+                      <p><a class="leftlink" href=
+                      "#!schedule/:recent">Recent
+                      Developments</a></p><br>
+                      <p><a class="leftlink" href=
+                      "#!faculty">Faculty</a></p><br>
+                      <p><a class="leftlink" href=
+                      "#!help">Help</a></p><br>
+                      <p><a class="leftlink" href=
+                      "#!copyright">Copyright</a></p><br>
+                      <br>
+                  </div>
+                  <select onchange=
+                  "location.href=''+ this.value">
+                    <!-- 
+<option value="#/!">
+                      Select Category
+                    </option>
+ -->
+                    <option value="#!schedule">
+                      Institute Schedule
+                    </option>
+                    <option value="#!schedule/:general">
+                      General Sessions
+                    </option>
+                    <option value="#!schedule/:special">
+                      Special Sessions
+                    </option>
+                    <option value="#!schedule/:fundamentals">
+                      Fundamentals
+                    </option>
+                    <option value="#!schedule/:recent">
+                      Recent Developments
+                    </option>
+                    <option value="#!faculty">
+                      Faculty
+                    </option>
+                    <option value="#!help">
+                      Help
+                    </option>
+                    <option value="#!copyright">
+                      Copyright
+                    </option>
+                  </select>
+                  <p>&nbsp;</p>
+                  </nav>
+                </div>
+                
+                <!-- CONTENT HERE -->
+                <div class="col-md-9">
+                <div  style="margin-right:5px;" ng-view=""></div>
+                </div>
+                <!--END CONTENT -->
+			  </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+  
+<!--   FOOTER -->
+	<div id="footer-outer">
+		<div id="footer-sub">
+			<div id="footer">
+			  <div class="custom">
+					<h4 style="text-align: left;">Technical Support
+					<span style="text-decoration: underline;">
+					<a href="mailto:authoring@discmakers.com">authoring@discmakers.com</a>
+					</span>
+					<p>&nbsp;</p>
+					Application Design by <span style=
+					"text-decoration: underline; font-size:12px;"><a target="_blank"
+					href="http://www.discmakers.com">Disc Makers</a></span></h4>
+			  </div>
+			</div>
+		</div>
+		<p>&nbsp;</p>
+	</div>
+ 
+</body>
+</html>

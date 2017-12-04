@@ -1,0 +1,146 @@
+table.containertbl
+ {
+  border-collapse:collapse;
+  background-color:#FFFFFF;
+  width: 100%; height: auto;
+}
+
+#catheading {
+  background-color:#7A253D;
+    color:white;
+    padding:10px;
+    font-size:20px;
+/*     border: 2px solid; */
+}
+.containertbl h1
+{   
+  color:white;
+  background-color:#000000;
+  padding:5px;
+  font-size:1.5em;
+  font-family: Maven Pro;
+}
+.headerbanner img{
+  max-width: 100%; height: auto;
+}
+
+@media (min-width: 768px) {
+  table.containertbl {
+    width: 100%;
+  }
+  .headerbanner img{
+  width:750px;
+  }
+}
+
+@media (min-width: 992px) {
+  table.containertbl{
+    width: 100%;
+  }
+  .headerbanner img{
+  width:970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  table.containertbl {
+  width: 100%;
+/*     width: 997px;/*1170*/ */
+  }
+  .headerbanner img{
+  width:1000px;
+  }
+}
+
+
+table.custom
+
+{
+  border-collapse:collapse;
+  border:solid 1px #998658;
+
+}
+table.custom th{
+	padding:5px;
+	background-color: #000000;
+	color:white;
+}
+
+table.custom td {
+	padding:5px;
+}
+
+h1 {   
+  color:white;
+  background-color:#000000;
+  padding:5px;
+  font-size:10px;
+}
+
+h2 {
+	font-size:1.6em;
+	font-weight:normal;
+	margin-bottom:10px;
+	padding:3px 0px;
+}
+
+#header {
+   background-color:white;
+   padding:5px;
+   width:100%;
+}
+
+/* #################### footer ############################ */
+#footer-sub {
+	padding:0px;
+}
+
+#footer {
+	padding:15px 10px 15px 20px;
+	text-align:right;
+	margin:0 auto;
+	display:block;
+	max-width:971px;
+	overflow:hidden
+}
+
+#footer div {
+	float:left;
+	font-size:0.8em;
+	line-height:1.7em;
+}
+
+#footer-outer {
+	padding:0;
+}
+
+nav select {
+  display: none;
+  margin-left: 10px;
+}
+
+@media (max-width: 900px) {
+  nav ul     { display: none !important;} 
+  nav select { display: inline-block !important;}
+  nav div { display: none !important;} 
+}
+
+.leftlink{
+  color: #83062c;
+  text-decoration: none;
+  padding: 20px;
+  font-size:12pt;
+}
+
+.custom a {
+    color: #244c80;
+}
+#footer h4 {
+	color: white;
+	font-size:10pt;
+}
+#footer a {
+   color: white;
+   font-size:10pt;
+}
+
