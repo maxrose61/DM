@@ -111,7 +111,7 @@
                         </div>
                         
                         <h4 id="catheading" ng-if="x.ProgramDescription">Program Description</h4>
-                        <p><span ng-if="x.SessionID">{{ x.SessionID }}&nbsp;</span>{{ x.ProgramDescription }}</p><br>                        
+                        <p>{{ x.ProgramDescription }}</p><br>                        
                         <p>&nbsp;</p>
                         <h4 id="catheading" ng-if="x.ProgramMaterials">Program Materials</h4>
                         <a style="padding:15px" href="pdf/{{x.ProgramMaterials}}" target="blank"><p>&nbsp;</p>
@@ -131,7 +131,7 @@
         <tr  style="display:"><td  width="160" valign="center" bgcolor="#FFFFFF" style="padding:0px">
         <ul style="margin:0px;" ng-repeat="(Date, items) in plist | filter:filters | groupBy: 'Date'  ">
                   <h3  id="currChap" >{{Date | date:'fullDate' : 'UTC'}}</h3>
-            <li  style="line-height:1.8;" class="nav" ng-repeat="x in items   " >
+            <li  style="line-height:1.8;" class="nav" ng-repeat="x in items | orderBy:['TimeStart','SessionID']  " >
                         <div class="col-md-3" style="font-size:small">{{ toTime(x.TimeStart) | date: 'shortTime'}}<span ng-if="x.TimeEnd">- {{toTime(x.TimeEnd) | date: 'shortTime'}}</span></div>
                         <div class="col-md-8">
                         <a href="#!program/{{ x.UID }}" ><span ng-if="x.SessionID">{{x.SessionID}}&nbsp;</span>{{ x.ProgramTitle }}</a>
