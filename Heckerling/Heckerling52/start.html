@@ -83,8 +83,8 @@
 
         <script type="text/ng-template" id="main.html">
         <div class="col-md-9">
-        <div><p style="text-align: center;"><h2>52nd Annual Heckerling Institute on Estate Planning</h3></p>
-        <p style="text-align: center;">January 22 – 26, 2018</p>
+        <div><p style="text-align: center;"><h2>52nd Annual Heckerling Institute on Estate Planning</h2></p>
+        <p style="text-align: center;"><h2>January 22 – 26, 2018</h2?</p>
         <p>&nbsp;</p>
         </div> 
         </script> 
@@ -96,7 +96,7 @@
         <p>&nbsp;</p>
         <p>&nbsp;</p>
                         <div class="col-md-12" class="nav" ng-repeat=" x in plist | filter:fltr " >
-						<p style="line-height:150%;"><strong style="color:#832F44"><span ng-if="x.SessionID">{{x.SessionID}}&nbsp;</span>{{ x.ProgramTitle }}</strong></p>
+						<p style="line-height:150%;"><strong style="color:#832F44"><span ng-if="x.SessionID">{{x.SessionID}}&nbsp;</span><span ng-bind-html="x.ProgramTitle"></span></strong></p>
 						<p style="line-height:150%;"><strong style="color:#832F44">Date:</strong> {{x.Date | date:'fullDate' : 'UTC'}}</p>
 						<p style="line-height:150%;"><strong style="color:#832F44">Time:</strong> {{ toTime(x.TimeStart) | date: 'shortTime'}}<span ng-if="x.TimeEnd">- {{toTime(x.TimeEnd) | date: 'shortTime'}}</span></p>
                         <p ng-if="x.ProgramLocation" style="line-height:150%;"><strong style="color:#832F44">Room:</strong> {{ x.ProgramLocation }}</p>
@@ -105,16 +105,17 @@
                         <p>&nbsp;</p>
                         <h4  id="catheading">Speaker(s)</h4>
                         <p style="line-height:1.5;">
-                        <span ng-repeat="s in x.speakers"><a href="#!faculty/{{ s }}" >{{s}}</a><br></span><br>  
+                        <!-- Link to speaker by name, exceptions for Tina and Patricia -->
+                        <span ng-repeat="s in x.speakers"><span ng-if="s.indexOf('Tina Portuondo') != 0 && s.indexOf('Patricia D. White') != 0"><a href="#!faculty/{{ s }}" >{{s}}</a></span><span ng-if="s.indexOf('Tina Portuondo') == 0 || s.indexOf('Patricia D. White') == 0">{{s}}</span><br></span><br>  
                         </p>
                         <p>&nbsp;</p>
                         </div>
                         
                         <h4 id="catheading" ng-if="x.ProgramDescription">Program Description</h4>
-                        <p>{{ x.ProgramDescription }}</p><br>                        
+                        <p ng-bind-html="x.ProgramDescription"></p><br>                        
                         <p>&nbsp;</p>
                         <h4 id="catheading" ng-if="x.ProgramMaterials">Program Materials</h4>
-                        <a style="padding:15px" href="pdf/{{x.ProgramMaterials}}" target="blank"><p>&nbsp;</p>
+                        <a style="padding:15px" href="pdf/{{x.ProgramMaterials}}" target="_self"><p>&nbsp;</p>
                         <img ng-if="x.ProgramMaterials" src="images/pdf.png" />
                         {{ x.ProgramMaterials }}</a>
                         </div>
@@ -134,7 +135,7 @@
             <li  style="line-height:1.8;" class="nav" ng-repeat="x in items | orderBy:['TimeStart','SessionID']  " >
                         <div class="col-md-3" style="font-size:small">{{ toTime(x.TimeStart) | date: 'shortTime'}}<span ng-if="x.TimeEnd">- {{toTime(x.TimeEnd) | date: 'shortTime'}}</span></div>
                         <div class="col-md-8">
-                        <a href="#!program/{{ x.UID }}" ><span ng-if="x.SessionID">{{x.SessionID}}&nbsp;</span>{{ x.ProgramTitle }}</a>
+                        <a href="#!program/{{ x.UID }}" ><span ng-if="x.SessionID">{{x.SessionID}}&nbsp;</span><span ng-bind-html="x.ProgramTitle"></span></a>
                          <p>&nbsp;</p>
                          <p style="padding:15px 0px;"><span ng-repeat="s in x.speakers">{{s}}{{$last ? '' : ', '}}</span></p>
                         </div>
@@ -179,18 +180,13 @@
         <ul>
             <li id="vmenu" class="nav" ng-repeat="s in sp  | filter:flt " >
 						<p>&nbsp;</p>
-                        <!-- 
-<p ><strong style="color:#832F44">{{ s.SpeakerLastName }}, {{ s.SpeakerFirstName }}<span ng-if="s.SpeakerMiddle"> {{ s.SpeakerMiddle }}</span></strong></p>
-                        <!~~ <div ng-show="showDetails"> ~~>
-                        <p>&nbsp;</p>
- -->
                         <div ng-if="s.biotext" id="catheading">Biography</div>
                         <p>&nbsp;</p>
                         <div id="bio" ng-bind-html="s.biotext"></div>
                         <p>&nbsp;</p>
                         <div ng-if="s.ProgramTitle" id="catheading">Programs</div>
                         <p>&nbsp;</p>
-                        <div style="line-height:1.8;" ng-repeat="p in s.ProgramTitle"><a href="#!program/{{ p.UID }}" ><span ng-if="p.SessionID">{{p.SessionID}}&nbsp;</span>{{p.ProgramTitle}}</a>
+                        <div style="line-height:1.8;" ng-repeat="p in s.ProgramTitle"><a href="#!program/{{ p.UID }}" ><span ng-if="p.SessionID">{{p.SessionID}}&nbsp;</span><span ng-bind-html="p.ProgramTitle"></a>
 						<p>{{p.Date | date:'fullDate' : 'UTC'}}&nbsp;{{ toTime(p.TimeStart) | date: 'shortTime'}}<span ng-if="p.TimeEnd">-&nbsp;{{toTime(p.TimeEnd) | date: 'shortTime'}}</span></p>
                         <hr>
                         </div>

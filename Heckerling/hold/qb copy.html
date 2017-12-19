@@ -8,7 +8,7 @@
   <script type="text/javascript" src="js/angular.min.js"></script>
   <script src="js/angular-filter.js"></script>
   <script src="js/underscore.js"></script>
-  <script src="js/jquery-1.11.2.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/listctl.js"></script>
   <script type="text/javascript" src="JW610/jwplayer.js"></script>
   <script type="text/javascript">jwplayer.key="l/j6NRE1flAbV9vZD1DyzglXo3o1zbeOZxaLUg=="</script>
@@ -16,21 +16,28 @@
   <link rel="stylesheet" href="CSS/styles.css" type="text/css"/>
 
 <script>
-document.addEventListener('keydown', function(event) {
-//alert(event.keyCode);
-switch(event.keyCode)
-  {
-  case 32:
-  jwplayer().play();
-  break;
-  case 13:
-  jwplayer().play();
-  break;
-  case 10:
-  jwplayer().play();
-  break;
-}
-});
+// $(document).on('keydown', function ( e ) {
+// 
+//     // You may replace `c` with whatever key you want
+//     if ((e.metaKey || e.ctrlKey)) {
+//         console.log( "You pressed CTRL + " + e.which );
+//     }
+// });
+
+// document.addEventListener('keydown', function(event) {
+//    var ctrlDown = false,
+//         ctrlKey = 17,
+//         cmdKey = 91,
+// 
+// // console.log(event.keyCode);
+// // pass;
+// switch(event.keyCode)
+//   {
+//   case 17:
+//   //console.log(event.keyCode);
+// //   break;
+// }
+// });
 
 window.addEventListener("resize", setDivHeight);
 
@@ -72,7 +79,11 @@ jwplayer().playlistItem(num);
 
 <!--onLoad="CheckFlash()"-->
 </head>
-
+ <a href="#" onclick="find('quick');">Find in This Page...</a>
+ 
+ <div>max</div>
+ 
+ 
 <body onLoad="loadHLS(1);">
 <div class="headerblock">
 <h2><img src="">Quickbooks Made Easy - Online </h2>
